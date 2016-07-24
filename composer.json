@@ -1,0 +1,13 @@
+{
+    "name": "vendor/image-box",
+    "description": "Description of project ImageBox.",
+    "authors": [
+        {
+            "name": "Lieven",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.0"
+    }
+}
