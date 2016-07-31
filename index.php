@@ -16,68 +16,44 @@ function doPhpFunctionOnImage($file, $response, $filter, $arg1 = null, $arg2 = n
     imagefilter($imageResource, $filter, $arg1);
     imagejpeg($imageResource);
     return $response;
-
 }
 // Create and configure Slim app
 $config = ['settings' => [
+            'displayErrorDetails' => true,
         'addContentLengthHeader' => false,
         ]];
 $app = new \Slim\App($config);
 
+require_once("basicFunctions.php");
+
+//loadPackages.
+require_once("packages\BasicImagePackage.php");
+
+$imagePackage = new BasicImagePackage();
+$imagePackage->register($app);
+
 // Define app routes
-$app->get('/hello/{name}', function ($request, $response, $args) {
-    return $response->write("Hello " . $args['name']);
+$app->get('/ping', function ($request, $response, $args) {
+    return $response->write("pong");
 });
 
-$app->get('/greyscale', function ($request, $response, $args) {
 
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_GRAYSCALE);
-});
 
-$app->get('/negate', function ($request, $response, $args) {
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_NEGATE);
-});
 
-$app->get('/edgedetect', function ($request, $response, $args) {
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_EDGEDETECT);
-});
 
-$app->get('/brightness/{brightness}', function ($request, $response, $args) {
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_BRIGHTNESS, $args['brightness']);
-});
-
-$app->get('/contrast/{contrast}', function ($request, $response, $args) {
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_CONTRAST, $args['contrast']);
-});
-
-$app->get('/emboss', function ($request, $response, $args) {
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_EMBOSS);
-});
-
-$app->get('/gaussianblur', function ($request, $response, $args) {
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_GAUSSIAN_BLUR);
-});
-
-$app->get('/selectiveblur', function ($request, $response, $args) {
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_SELECTIVE_BLUR);
-});
-
-$app->get('/smooth/{smoothnumber}', function ($request, $response, $args) {
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_SMOOTH, $args['smoothnumber']);
-});
-
-$app->get('/pixelate/{pixelsize}', function ($request, $response, $args) {
-    $file = 'jpeg example.jpg';
-    return doPhpFunctionOnImage($file, $response, IMG_FILTER_PIXELATE, $args['pixelsize']);
-});
+/**
+ * 
+ * imagefilter($im, IMG_FILTER_GRAYSCALE);
+imagefilter($im, IMG_FILTER_CONTRAST, 255);
+imagefilter($im, IMG_FILTER_NEGATE);
+imagefilter($im, IMG_FILTER_COLORIZE, 2, 118, 219);
+imagefilter($im, IMG_FILTER_NEGATE);
+ */
+// face blur
+// face detection
+// QR code reader.
+// Conversie van images => vector.
+// OCR tracing
+//
 // Run app
 $app->run();
