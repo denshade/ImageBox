@@ -2,21 +2,6 @@
 
 require 'vendor/autoload.php';
 
-function doPhpFunctionOnImage($file, $response, $filter, $arg1 = null, $arg2 = null)
-{
-    $imageResource = imagecreatefromjpeg($file);
-
-    $response = $response->withHeader('Content-Description', 'File Transfer')
-            ->withHeader('Content-Type', 'application/octet-stream')
-            ->withHeader('Content-Disposition', 'attachment;filename="' . basename($file) . '"')
-            ->withHeader('Expires', '0')
-            ->withHeader('Cache-Control', 'must-revalidate')
-            ->withHeader('Pragma', 'public')
-            ->withHeader('Content-Length', filesize($file));
-    imagefilter($imageResource, $filter, $arg1);
-    imagejpeg($imageResource);
-    return $response;
-}
 // Create and configure Slim app
 $config = ['settings' => [
             'displayErrorDetails' => true,

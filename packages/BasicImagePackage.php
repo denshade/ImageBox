@@ -17,52 +17,52 @@ class BasicImagePackage {
         $app->get('/greyscale/{filename}', function ($request, $response, $args) {
             
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_GRAYSCALE);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_GRAYSCALE);
         });
 
         $app->get('/negate/{filename}', function ($request, $response, $args) {
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_NEGATE);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_NEGATE);
         });
 
         $app->get('/edgedetect/{filename}', function ($request, $response, $args) {
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_EDGEDETECT);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_EDGEDETECT);
         });
 
         $app->get('/brightness/{filename}/{brightness}', function ($request, $response, $args) {
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_BRIGHTNESS, $args['brightness']);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_BRIGHTNESS, $args['brightness']);
         });
 
         $app->get('/contrast/{filename}/{contrast}', function ($request, $response, $args) {
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_CONTRAST, $args['contrast']);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_CONTRAST, $args['contrast']);
         });
 
         $app->get('/emboss/{filename}', function ($request, $response, $args) {
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_EMBOSS);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_EMBOSS);
         });
 
         $app->get('/gaussianblur/{filename}', function ($request, $response, $args) {
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_GAUSSIAN_BLUR);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_GAUSSIAN_BLUR);
         });
 
         $app->get('/selectiveblur/{filename}', function ($request, $response, $args) {
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_SELECTIVE_BLUR);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_SELECTIVE_BLUR);
         });
 
         $app->get('/smooth/{filename}/{smoothnumber}', function ($request, $response, $args) {
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_SMOOTH, $args['smoothnumber']);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_SMOOTH, $args['smoothnumber']);
         });
 
         $app->get('/pixelate/{filename}/{pixelsize}', function ($request, $response, $args) {
             $file = getFile($args);
-            return doPhpFunctionOnImage($file, $response, IMG_FILTER_PIXELATE, $args['pixelsize']);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_PIXELATE, $args['pixelsize']);
         });
 
         $app->get('/crop/{filename}/{x}/{y}/{width}/{height}', function ($request, $response, $args) {
@@ -73,15 +73,16 @@ class BasicImagePackage {
             $height = $args['height'];
             $rect = ["x" => $x, "y" => $y, "width" => $width, "height" => $height];
             $imageResource = imagecreatefromjpeg($file);
-
+            $imageResource = imagecrop($imageResource, $rect);
+            imagejpeg($imageResource);
+                
             $response = $response->withHeader('Content-Description', 'File Transfer')
                     ->withHeader('Content-Type', 'application/octet-stream')
                     ->withHeader('Content-Disposition', 'attachment;filename="' . basename($file) . '"')
                     ->withHeader('Expires', '0')
                     ->withHeader('Cache-Control', 'must-revalidate')
                     ->withHeader('Pragma', 'public')
-                    ->withHeader('Content-Length', filesize($file));
-            $imageResource = imagecrop($imageResource, $rect);
+                    ->withHeader('Content-Length', BasicImagePackage::getImageLen($imageResource));
             imagejpeg($imageResource);
             return $response;
         });
@@ -91,15 +92,16 @@ class BasicImagePackage {
             $degrees = $args['degrees'];
             $rgb = $args['color'];
             $imageResource = imagecreatefromjpeg($file);
-
+            $imageResource = imagerotate($imageResource, $degrees, 0);
+            
             $response = $response->withHeader('Content-Description', 'File Transfer')
                     ->withHeader('Content-Type', 'application/octet-stream')
                     ->withHeader('Content-Disposition', 'attachment;filename="' . basename($file) . '"')
                     ->withHeader('Expires', '0')
                     ->withHeader('Cache-Control', 'must-revalidate')
                     ->withHeader('Pragma', 'public')
-                    ->withHeader('Content-Length', filesize($file));
-            $imageResource = imagerotate($imageResource, $degrees, 0);
+                    ->withHeader('Content-Length', BasicImagePackage::getImageLen($imageResource));
+            
             imagejpeg($imageResource);
             return $response;
         });
@@ -108,19 +110,28 @@ class BasicImagePackage {
 
     }
 
-    private function doPhpFunctionOnImage($file, $response, $filter, $arg1 = null, $arg2 = null) {
+    public static function doPhpFunctionOnImage($file, $response, $filter, $arg1 = null, $arg2 = null)
+    {
         $imageResource = imagecreatefromjpeg($file);
-
+        imagefilter($imageResource, $filter, $arg1);
+        
         $response = $response->withHeader('Content-Description', 'File Transfer')
                 ->withHeader('Content-Type', 'application/octet-stream')
                 ->withHeader('Content-Disposition', 'attachment;filename="' . basename($file) . '"')
                 ->withHeader('Expires', '0')
                 ->withHeader('Cache-Control', 'must-revalidate')
                 ->withHeader('Pragma', 'public')
-                ->withHeader('Content-Length', filesize($file));
-        imagefilter($imageResource, $filter, $arg1);
+                ->withHeader('Content-Length', BasicImagePackage::getImageLen($imageResource));
         imagejpeg($imageResource);
         return $response;
     }
+    
+    private static function getImageLen($imageResource)
+    {
+        $tempFile = tempnam(sys_get_temp_dir(), "img");
+        imagejpeg($imageResource, $tempFile);
+        return filesize($tempFile);
+    }
+
 
 }
