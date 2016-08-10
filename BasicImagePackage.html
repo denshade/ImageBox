@@ -10,58 +10,108 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!--
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        -->
+        
     </head>
-    <body>
+    <body class="container">
         <h1>The basic image package</h1>
         <div class="packagedescription">
             This is an example package. It supplies the basic functionality 
         </div>
-        The original image. 
-        <div class="original">
-            <img src="jpeg.jpg">
-        </div>
-        <div class="">
-        greyscale <img src="http://localhost:8080/greyscale/jpeg.jpg">
-        </div>
-        <div>
-        negate <img src="http://localhost:8080/negate/jpeg.jpg">
-        </div>
-        <div>
-        edgedetect <img src="http://localhost:8080/edgedetect/jpeg.jpg">
-        </div>        
-        <div>
-        brightness <img src="http://localhost:8080/brightness/jpeg.jpg/50">
-        </div>
-        <div>
-        contrast <img src="http://localhost:8080/contrast/jpeg.jpg/50">
-        </div>     
-        <div>
-        emboss <img src="http://localhost:8080/emboss/jpeg.jpg">
-        </div>
-        <div>
-        gaussianblur <img src="http://localhost:8080/gaussianblur/jpeg.jpg">
-        </div>  
-        <div>
-        selectiveblur <img src="http://localhost:8080/selectiveblur/jpeg.jpg">
-        </div>  
-        <div>
-        smooth <img src="http://localhost:8080/smooth/jpeg.jpg/3">
-        </div>  
-        <div>
-        pixelate <img src="http://localhost:8080/pixelate/jpeg.jpg/3">
-        </div>  
-        <div>
-        crop <img src="http://localhost:8080/crop/jpeg.jpg/50/50/150/150">
-        </div> 
-        <div>
-        rotate <img src="http://localhost:8080/rotate/jpeg.jpg/10/black">
-        </div> 
 
+        <div class="panel panel-info">
+            <div class="panel-heading">The original image.</div>
+            <div class="panel-body">
+              <img src="jpeg.jpg">
+            </div>
+         </div>
+        
+        <div class="panel panel-info">
+            <div class="panel-heading">greyscale</div>
+            <div class="panel-body">
+                <div class="span4">
+                <img style="float:left" src="http://localhost:8080/greyscale/jpeg.jpg"/>
+                <div class="content-heading"><h3>This is a greyscale function.</h3></div>
+                <p style="clear:both">This function takes no parameters</p>
+                </div>
+            </div>
+         </div>
+        
+        <div class="panel panel-info">
+            <div class="panel-heading">negate</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/negate/jpeg.jpg">
+            </div>
+         </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">edgedetect</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/edgedetect/jpeg.jpg">
+            </div>
+         </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">brightness</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/brightness/jpeg.jpg/50">
+            </div>
+         </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">contrast</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/contrast/jpeg.jpg/50">
+            </div>
+         </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">emboss</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/emboss/jpeg.jpg">
+            </div>
+         </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">gaussianblur</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/gaussianblur/jpeg.jpg">
+            </div>
+         </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">selectiveblur</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/selectiveblur/jpeg.jpg">
+            </div>
+         </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">smooth</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/smooth/jpeg.jpg/3">
+            </div>
+         </div>
+        
+        <div class="panel panel-info">
+            <div class="panel-heading">pixelate</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/pixelate/jpeg.jpg/3">
+            </div>
+         </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">crop</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/crop/jpeg.jpg/50/50/150/150">
+            </div>
+         </div>
+        
+        <div class="panel panel-info">
+            <div class="panel-heading">rotate</div>
+            <div class="panel-body">
+              <img src="http://localhost:8080/rotate/jpeg.jpg/10/black">
+            </div>
+         </div>
     </body>
 </html>

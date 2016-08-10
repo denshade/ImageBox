@@ -34,6 +34,7 @@ imagefilter($im, IMG_FILTER_NEGATE);
 imagefilter($im, IMG_FILTER_COLORIZE, 2, 118, 219);
 imagefilter($im, IMG_FILTER_NEGATE);
  */
+// Nearest-neighbor interpolation
 // face blur
 // face detection
 // QR code reader.
