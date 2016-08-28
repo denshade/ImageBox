@@ -1,8 +1,9 @@
 <?php
 
 
-function getFile($args)
+function getDemoFile($args)
 {
+    return "jpeg.jpg";
     if (!key_exists("filename", $args))
     {
         badFormat();

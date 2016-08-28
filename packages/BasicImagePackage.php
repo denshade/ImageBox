@@ -14,59 +14,59 @@
 class BasicImagePackage {
 
     public function register(\Slim\App $app) {
-        $app->get('/greyscale/{filename}', function ($request, $response, $args) {
+        $app->get('/greyscale/demo', function ($request, $response, $args) {
             
-            $file = getFile($args);
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_GRAYSCALE);
         });
 
-        $app->get('/negate/{filename}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/negate/demo', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_NEGATE);
         });
 
-        $app->get('/edgedetect/{filename}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/edgedetect/demo', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_EDGEDETECT);
         });
 
-        $app->get('/brightness/{filename}/{brightness}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/brightness/demo/{brightness}', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_BRIGHTNESS, $args['brightness']);
         });
 
-        $app->get('/contrast/{filename}/{contrast}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/contrast/demo/{contrast}', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_CONTRAST, $args['contrast']);
         });
 
-        $app->get('/emboss/{filename}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/emboss/demo', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_EMBOSS);
         });
 
-        $app->get('/gaussianblur/{filename}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/gaussianblur/demo', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_GAUSSIAN_BLUR);
         });
 
-        $app->get('/selectiveblur/{filename}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/selectiveblur/demo', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_SELECTIVE_BLUR);
         });
 
-        $app->get('/smooth/{filename}/{smoothnumber}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/smooth/demo/{smoothnumber}', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_SMOOTH, $args['smoothnumber']);
         });
 
-        $app->get('/pixelate/{filename}/{pixelsize}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/pixelate/demo/{pixelsize}', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_PIXELATE, $args['pixelsize']);
         });
 
-        $app->get('/crop/{filename}/{x}/{y}/{width}/{height}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/crop/demo/{x}/{y}/{width}/{height}', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             $x = $args['x'];
             $y = $args['y'];
             $width = $args['width'];
@@ -87,8 +87,8 @@ class BasicImagePackage {
             return $response;
         });
 
-        $app->get('/rotate/{filename}/{degrees}/{color}', function ($request, $response, $args) {
-            $file = getFile($args);
+        $app->get('/rotate/demo/{degrees}/{color}', function ($request, $response, $args) {
+            $file = getDemoFile($args);
             $degrees = $args['degrees'];
             $rgb = $args['color'];
             $imageResource = imagecreatefromjpeg($file);
