@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>The QR package</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+    </head>
+    <body class="container">
+        <h1>The basic image package</h1>
+        <div class="packagedescription">
+            This is the QR package. It supplies QR functionality.
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">encode</div>
+            <div class="panel-body">
+                <div class="span4">
+                <img style="float:left" src="http://localhost:8080/qrcode/demo"/>
+                <div class="content-heading"><h3>This call encodes text into a QR code</h3></div>
+                <p style="clear:both">This call a text message</p>
+                </div>
+            </div>
+         </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">decode</div>
+            <div class="panel-body">
+                <div class="span4">
+                    <iframe src="http://localhost:8080/qrscan/qrcode.png"></iframe>
+                <div class="content-heading"><h3>This call decodes an image into a text message.</h3></div>
+                <p style="clear:both">This call converts a QRCode into a text message.</p>
+                </div>
+            </div>
+         </div>        
+</html>

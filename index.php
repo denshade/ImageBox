@@ -13,9 +13,13 @@ require_once("basicFunctions.php");
 
 //loadPackages.
 require_once("packages\BasicImagePackage.php");
+require_once("packages\QRCodePackage.php");
 
 $imagePackage = new BasicImagePackage();
 $imagePackage->register($app);
+
+$qrPackage = new QRCodePackage();
+$qrPackage->register($app);
 
 // Define app routes
 $app->get('/ping', function ($request, $response, $args) {

@@ -20,8 +20,8 @@ class QRCodePackage {
                 ->withHeader('Content-Disposition', 'attachment;filename="qrcode.png"')
                 ->withHeader('Expires', '0')
                 ->withHeader('Cache-Control', 'must-revalidate')
-                ->withHeader('Pragma', 'public')
-                ->withHeader('Content-Length', 365 );
+                ->withHeader('Pragma', 'public');
+                //->withHeader('Content-Length', 365 );
             QRcode::png($text);
             return $response;
         });
