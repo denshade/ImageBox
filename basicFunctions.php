@@ -17,7 +17,8 @@ function getFile($args)
 
 function forbidden()
 {
-    
+    http_response_code (403);
+    exit(); 
 }
 
 function badFormat()
