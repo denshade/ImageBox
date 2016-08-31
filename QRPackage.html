@@ -26,8 +26,12 @@ and open the template in the editor.
             <div class="panel-body">
                 <div class="span4">
                 <img style="float:left" src="http://localhost:8080/qrcode/demo"/>
-                <div class="content-heading"><h3>This call encodes text into a QR code</h3></div>
-                <p style="clear:both">This call a text message</p>
+                <div class="content-heading"><h4>This call encodes text into a QR code</h4></div>
+                <p style="clear:both">Parameters</p>
+                <ul>
+                <li>
+                    text: The payload text in the QR code.
+                <li></ul>
                 </div>
             </div>
          </div>
@@ -36,8 +40,11 @@ and open the template in the editor.
             <div class="panel-body">
                 <div class="span4">
                     <iframe src="http://localhost:8080/qrscan/qrcode.png"></iframe>
-                <div class="content-heading"><h3>This call decodes an image into a text message.</h3></div>
-                <p style="clear:both">This call converts a QRCode into a text message.</p>
+                <div class="content-heading"><h3>This call decodes an QR code image into a text message.</h3></div>
+                <ul>
+                <li>
+                    POST data: the image you want to decode.
+                <li></ul>
                 </div>
             </div>
          </div>        
