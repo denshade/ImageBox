@@ -19,7 +19,11 @@ class BasicImagePackage {
             $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_GRAYSCALE);
         });
-
+        $app->post('/greyscale', function ($request, $response, $args) {
+            
+            $file = getDemoFile($args);
+            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_GRAYSCALE);
+        });
         $app->get('/negate/demo', function ($request, $response, $args) {
             $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_NEGATE);
