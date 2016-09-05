@@ -32,5 +32,13 @@ class QRCodePackage {
             $qrcode_text = $QRCodeReader->decode($file);
             echo $qrcode_text;
         });
+        
+        $app->post('/qrscan', function ($request, $response, $args) {
+            $file = "qrcode.png";
+            $QRCodeReader = new Libern\QRCodeReader\QRCodeReader();
+            $qrcode_text = $QRCodeReader->decode($file);
+            echo $qrcode_text;
+        });
+
     }
 }
