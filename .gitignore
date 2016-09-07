@@ -50,3 +50,4 @@ vendor
 nbproject
 composer.lock
 tests/_output/*
+.idea

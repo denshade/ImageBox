@@ -1,10 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+use Slim\Http\UploadedFile;
 
 /**
  * Description of BasicImage
@@ -14,15 +10,22 @@
 class BasicImagePackage {
 
     public function register(\Slim\App $app) {
-        $app->get('/greyscale/demo', function ($request, $response, $args) {
+       $app->get('/greyscale/demo', function ($request, $response, $args) {
             
             $file = getDemoFile($args);
             return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_GRAYSCALE);
         });
         $app->post('/greyscale', function ($request, $response, $args) {
-            
-            $file = getDemoFile($args);
-            return BasicImagePackage::doPhpFunctionOnImage($file, $response, IMG_FILTER_GRAYSCALE);
+            $files = $request->getUploadedFiles();
+            $uploadedFiles = array_values($files);
+            if (count($uploadedFiles) != 1){
+                badFormat();
+            }
+            /**
+             * @var UploadedFile $uploadFile 
+             */
+            $uploadFile = $uploadedFiles[0];
+            return BasicImagePackage::doPhpFunctionOnImage($uploadFile->file, $response, IMG_FILTER_GRAYSCALE);
         });
         $app->get('/negate/demo', function ($request, $response, $args) {
             $file = getDemoFile($args);
