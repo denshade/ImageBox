@@ -1,5 +1,18 @@
 <?php
 
+function getPostFile(\Slim\Http\Request $request)
+{
+    $files = $request->getUploadedFiles();
+    $uploadedFiles = array_values($files);
+    if (count($uploadedFiles) != 1){
+        badFormat();
+    }
+    /**
+     * @var UploadedFile $uploadFile 
+     */
+    $uploadFile = $uploadedFiles[0];
+    return $uploadFile->file;
+}
 
 function getDemoFile($args)
 {

@@ -8,3 +8,5 @@ file_put_contents("qrImg.png", $qrImage);
 $I->sendPOST('/qrscan', [], [ 'someFile' => "qrImg.png"]);
 $I->seeResponseCodeIs(200);
 $I->seeResponseContains("text");
+
+unlink("qrImg.png");
