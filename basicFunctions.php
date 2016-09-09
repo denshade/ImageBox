@@ -35,9 +35,9 @@ function forbidden()
     exit(); 
 }
 
-function badFormat()
+function badFormat($errormessage)
 {
-    http_response_code (400);
+    header("HTTP/1.0 400 $errormessage");    
     exit();
 }
 
