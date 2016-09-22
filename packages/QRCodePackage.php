@@ -56,9 +56,9 @@ class QRCodePackage {
         });
         
         $app->post('/qrscan', function ($request, $response, $args) {
-            //$file = getPostFile($request);
-            //if (mime_content_type($file) != "image/png") badFormat ("Incoming image isn't a png image.");
-            //error_log (mime_content_type($file));
+            $file = getPostFile($request);
+            $filesize = getimagesize($file);
+            if ($filesize == null) badFormat ("Incoming image isn't a png image.");
             $QRCodeReader = new Libern\QRCodeReader\QRCodeReader();
             $qrcode_text = $QRCodeReader->decode(getPostFile($request));
             echo $qrcode_text;

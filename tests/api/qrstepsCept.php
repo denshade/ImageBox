@@ -39,7 +39,7 @@ $I->wantTo('perform actions and see result');
 $I->sendGet("/qrcode/4/15/40/text");
 $I->seeResponseCodeIs(400);
 
-//$I->sendPOST('/qrscan', [], [ 'someFile' => "qrImg.png"]);
-//$I->seeResponseCodeIs(400);
+$I->sendPOST('/qrscan', [], [ 'someFile' => "qrImg.png"]);
+$I->seeResponseCodeIs(400);
 
 //unlink("qrImg.png");
