@@ -51,3 +51,5 @@ nbproject
 composer.lock
 tests/_output/*
 .idea
+
+vagrant/.vagrant
