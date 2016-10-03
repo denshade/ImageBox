@@ -37,5 +37,5 @@ if [ ! -f  composer.phar ]; then
 fi
 
 
-php composer update
+php composer.phar update
 
