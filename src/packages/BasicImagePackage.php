@@ -1,5 +1,7 @@
 <?php
 
+namespace packages;
+
 use Slim\Http\UploadedFile;
 
 /**

@@ -1,4 +1,5 @@
 <?php
+namespace packages;
 
 /**
  * Created by PhpStorm.
@@ -8,7 +9,8 @@
  */
 class StatisticsPackage
 {
-    public function register(\Slim\App $app) {
+    public function register(\Slim\App $app)
+    {
         //Returns t value. Take 2 vectors of numbers.
         // data={ "x" => [1,2,3], "y" => [2,3,4] }
         $app->post('/ttest/{p}', function ($request, $response, $args) {
@@ -21,7 +23,8 @@ class StatisticsPackage
                 ->withHeader('Cache-Control', 'must-revalidate')
                 ->withHeader('Pragma', 'public');
             //->withHeader('Content-Length', 365 );
-            QRcode::png($text);
+            // QRcode::png($text);
             return $response;
         });
+    }
 }

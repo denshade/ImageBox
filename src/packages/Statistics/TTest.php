@@ -5,7 +5,7 @@
  * Time: 19:51
  */
 
-namespace Statistics;
+namespace packages\Statistics;
 
 
 class TTest
@@ -14,7 +14,7 @@ class TTest
     {
         if (count($xVector) != count($yVector))
         {
-
+            throw new \Exception("The incoming vectors must have the same amount of elements.");
         }
         $meanOfXVector = array_sum($xVector)/count($xVector);
         $meanOfYVector = array_sum($yVector)/count($yVector);
@@ -24,6 +24,8 @@ class TTest
         $t = ($meanOfXVector - $meanOfYVector) / ($stdDev*(sqrt(2/count($xVector))));
         return $t;
     }
+
+
 
     /**
      * This user-land implementation follows the implementation quite strictly;
