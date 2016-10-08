@@ -1,5 +1,8 @@
 <?php
 
+use packages\BasicImagePackage;
+use packages\QRCodePackage;
+
 require 'vendor/autoload.php';
 
 // Create and configure Slim app
@@ -11,9 +14,8 @@ $app = new \Slim\App($config);
 
 require_once("basicFunctions.php");
 
+require_once("vendor/autoload.php");
 //loadPackages.
-require_once("packages\BasicImagePackage.php");
-require_once("packages\QRCodePackage.php");
 
 $imagePackage = new BasicImagePackage();
 $imagePackage->register($app);
