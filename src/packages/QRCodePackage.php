@@ -14,6 +14,7 @@ namespace packages;
  * @author lveeckha
  */
 class QRCodePackage {
+
     public function register(\Slim\App $app) {
         $app->get('/qrcode/{text}', function ($request, $response, $args) {
             $text = $args['text'];

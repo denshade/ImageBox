@@ -97,8 +97,6 @@ class BasicImagePackage {
             return BasicImagePackage::doPhpFunctionOnImage(getPostFile($request), $response, IMG_FILTER_GAUSSIAN_BLUR);
         });
         
-
-
         $app->post('/selectiveblur', function ($request, $response, $args) {
             return BasicImagePackage::doPhpFunctionOnImage(getPostFile($request), $response, IMG_FILTER_SELECTIVE_BLUR);
         });
@@ -177,6 +175,15 @@ class BasicImagePackage {
         });        
     }
 
+    /**
+     * The template function for transforming php image filters.
+     * @param $file
+     * @param $response
+     * @param $filter
+     * @param null $arg1
+     * @param null $arg2
+     * @return mixed
+     */
     public static function doPhpFunctionOnImage($file, $response, $filter, $arg1 = null, $arg2 = null)
     {
         $imageResource = imagecreatefromjpeg($file);

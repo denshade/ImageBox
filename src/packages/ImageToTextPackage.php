@@ -13,6 +13,10 @@ namespace packages;
  *
  * @author Lieven
  */
-class ImageToTextPackage {
+class ImageToTextPackage
+{
+    public function register(\Slim\App $app) {
+
+    }
     
 }

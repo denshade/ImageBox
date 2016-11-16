@@ -12,16 +12,18 @@ class TTest
 {
     public function getTValue(array $xVector,array $yVector)
     {
-        if (count($xVector) != count($yVector))
+        $countVectorX = count($xVector);
+        $countVectorY = count($yVector);
+        if ($countVectorX != $countVectorY)
         {
             throw new \Exception("The incoming vectors must have the same amount of elements.");
         }
-        $meanOfXVector = array_sum($xVector)/count($xVector);
-        $meanOfYVector = array_sum($yVector)/count($yVector);
+        $meanOfXVector = array_sum($xVector)/ $countVectorX;
+        $meanOfYVector = array_sum($yVector)/ $countVectorY;
         $stdDevX = $this->standard_deviation ( $xVector);
         $stdDevY = $this->standard_deviation ( $yVector);
-        $stdDev = sqrt($stdDevX*$stdDevX + $stdDevY*$stdDevY);
-        $t = ($meanOfXVector - $meanOfYVector) / ($stdDev*(sqrt(2/count($xVector))));
+        $stdDev = sqrt($stdDevX * $stdDevX + $stdDevY * $stdDevY);
+        $t = ($meanOfXVector - $meanOfYVector) / ($stdDev*(sqrt(2/$countVectorX)));
         return $t;
     }
 
