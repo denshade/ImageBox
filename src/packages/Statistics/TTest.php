@@ -7,10 +7,22 @@
 
 namespace packages\Statistics;
 
-
+/**
+ * This calculate the student T test.
+ * Class TTest
+ * @package packages\Statistics
+ */
 class TTest
 {
-    public function getTValue(array $xVector,array $yVector)
+    /**
+     * This function gets a Student t value. Welch's t-test Independent population values.
+     *
+     * @param array $xVector A vector of values for the first population
+     * @param array $yVector A vector of values for the second population
+     * @return float the t value.
+     * @throws \Exception
+     */
+    public function getWelchTValue(array $xVector,array $yVector)
     {
         $countVectorX = count($xVector);
         $countVectorY = count($yVector);
@@ -20,10 +32,9 @@ class TTest
         }
         $meanOfXVector = array_sum($xVector)/ $countVectorX;
         $meanOfYVector = array_sum($yVector)/ $countVectorY;
-        $stdDevX = $this->standard_deviation ( $xVector);
-        $stdDevY = $this->standard_deviation ( $yVector);
-        $stdDev = sqrt($stdDevX * $stdDevX + $stdDevY * $stdDevY);
-        $t = ($meanOfXVector - $meanOfYVector) / ($stdDev*(sqrt(2/$countVectorX)));
+        $stdDevX = $this->standard_deviation ( $xVector, true) / $countVectorX;
+        $stdDevY = $this->standard_deviation ( $yVector, true) / $countVectorY;
+        $t = abs(($meanOfXVector - $meanOfYVector) / sqrt($stdDevX + $stdDevY));
         return $t;
     }
 
@@ -39,7 +50,7 @@ class TTest
      * @param bool $sample [optional] Defaults to false
      * @return float|bool The standard deviation or false on error.
      */
-    private function standard_deviation(array $a, $sample = false) {
+    public function standard_deviation(array $a, $sample = false) {
         $n = count($a);
         if ($n === 0) {
             trigger_error("The array has zero elements", E_USER_WARNING);
